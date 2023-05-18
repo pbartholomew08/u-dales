@@ -799,10 +799,11 @@ module modibm
 
      real :: empo, emmo, emop, emom
      integer :: i, j, k, n, m
-     type(bound_info_type) :: bound_info
+     !type(bound_info_type) :: bound_info
 
-     bound_info = bound_info_u
+     !bound_info = bound_info_u
 
+     associate(bound_info => bound_info_u) ! Don't do a memory copy
      do m = 1,bound_info%nbndptsrank
       n = bound_info%bndptsrank(m)
          i = bound_info%bndpts(n,1) - zstart(1) + 1
@@ -845,6 +846,7 @@ module modibm
          end if
 
      end do
+     end associate
 
 
    end subroutine diffu_corr
@@ -860,10 +862,11 @@ module modibm
 
      real :: epmo, emmo, eomp, eomm
      integer :: i, j, k, n, m
-     type(bound_info_type) :: bound_info
+     !type(bound_info_type) :: bound_info
 
-     bound_info = bound_info_v
+     !bound_info = bound_info_v
 
+     associate(bound_info => bound_info_v) ! Don't do a memcpy
      do m = 1,bound_info%nbndptsrank
       n = bound_info%bndptsrank(m)
          i = bound_info%bndpts(n,1) - zstart(1) + 1
@@ -900,6 +903,7 @@ module modibm
          end if
 
      end do
+     end associate
 
    end subroutine diffv_corr
 
@@ -914,10 +918,11 @@ module modibm
 
      real :: epom, emom, eopm, eomm
      integer :: i, j, k, n, m
-     type(bound_info_type) :: bound_info
+     !type(bound_info_type) :: bound_info
 
-     bound_info = bound_info_w
+     !bound_info = bound_info_w
 
+     associate(bound_info => bound_info_w) ! Don't do a memcpy
      do m = 1,bound_info%nbndptsrank
       n = bound_info%bndptsrank(m)
          i = bound_info%bndpts(n,1) - zstart(1) + 1
@@ -958,6 +963,7 @@ module modibm
          end if
 
      end do
+     end associate
 
    end subroutine diffw_corr
 
@@ -973,10 +979,11 @@ module modibm
      real, intent(in)    :: var(ib-hi:ie+hi,jb-hj:je+hj,kb-hk:ke+hk)
      real, intent(inout) :: rhs(ib-hi:ie+hi,jb-hj:je+hj,kb   :ke+hk)
      integer :: i, j, k, n, m
-     type(bound_info_type) :: bound_info
+     !type(bound_info_type) :: bound_info
 
-     bound_info = bound_info_c
+     !bound_info = bound_info_c
 
+     associate(bound_info => bound_info_c) ! Don't do a memcpy
      do m = 1,bound_info%nbndptsrank
       n = bound_info%bndptsrank(m)
          i = bound_info%bndpts(n,1) - zstart(1) + 1
@@ -1010,6 +1017,7 @@ module modibm
          end if
 
      end do
+     end associate
 
    end subroutine diffc_corr
 
