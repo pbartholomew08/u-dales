@@ -41,7 +41,7 @@ build_type=$2
 
 if [ $system == "icl" ]
 then
-    module load cmake/3.14.0 git/2.14.3 intel-suite/2017.6 mpi/intel-2018
+    module load cmake/3.18.2 git/2.14.3 intel-suite/2020.2 mpi/intel-2019.8.254
     FC=mpiifort
     NETCDF_DIR=/apps/netcdf/4.4.1-c
     NETCDF_FORTRAN_DIR=/apps/netcdf/4.4.4-fortran
@@ -49,7 +49,7 @@ then
 elif [ $system == "archer" ]
 then
     module load cmake cray-hdf5 cray-netcdf cray-fftw
-    FC=
+    FC=ftn
     NETCDF_DIR=$NETCDF_DIR
     NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR
     #FFTW_DOUBLE_LIB=/opt/cray/pe/fftw/3.3.8.9/x86_rome/lib/libfftw3.so
